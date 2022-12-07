@@ -7,15 +7,17 @@ accident$city<-factor(accident$city,levels = c("臺北市","新北市","桃園�
 ggplot(data=accident,
        mapping = aes(x=year,y=NumberOfAccident,
                      colour=city,group=city))+
-  geom_point(shape=15)+
-  geom_line()+
+  geom_point(shape=15,size=3)+
+  geom_line(size=2,alpha=0.9)+
   scale_colour_manual(values = c("#FF9900","#e9e9e9",
                                  "#CCCCCC","#999999","#666666","#333333"))+
-  labs(title = "直轄市交通事故發生件數",
-       subtitle = "橫軸為年份,縱軸為平均每日交通事故發生件數(件/日)",
+  labs(title = "直轄市之中，誰的每日交通事故發生件數最少?",
+       subtitle = "以2012-2021資料為例，縱軸代表平均每日交通事故發生件數(件/日)",
        caption="資料來源:行政院主計總處https://winsta.dgbas.gov.tw/DgbasWeb/ZWeb/StateFile_ZWeb.aspx")+
   theme(axis.text.x = element_text(size = 12),
         axis.text.y = element_text(size = 12),
-        legend.key.size = unit(20,"pt"))
+        axis.title.x = element_text(size = 15),
+        axis.title.y = element_text(size = 15),
+        legend.key.size = unit(30,"pt"))
 
 ggdash()
