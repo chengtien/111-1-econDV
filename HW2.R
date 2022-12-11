@@ -1,10 +1,15 @@
-pivot_longer(data=HW2,cols=2:11,
+googlesheets4::gs4_deauth()
+googlesheets4::read_sheet(ss="https://docs.google.com/spreadsheets/d/1hXtBuoCTp87VUHKhUVz3wDY3lxXhsddNgrk8mlMmWcA/edit#gid=0",
+                          sheet = "sheet1")->Accident
+
+
+pivot_longer(data=Accident,cols=2:11,
              names_to="year",
-             values_to="NumberOfAccident")->accident
-accident$city<-factor(accident$city,levels = c("臺北市","新北市","桃園市","臺中市","臺南市","高雄市"))
+             values_to="NumberOfAccident")->Accident
+Accident$city<-factor(accident$city,levels = c("臺北市","新北市","桃園市","臺中市","臺南市","高雄市"))
 
 
-ggplot(data=accident,
+ggplot(data=Accident,
        mapping = aes(x=year,y=NumberOfAccident,
                      colour=city,group=city))+
   geom_point(shape=15,size=3)+
